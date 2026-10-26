@@ -1,0 +1,7 @@
+/* Only global resets live here; page styles are in native-auth.css and each page's inline <style>. */
+* {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}

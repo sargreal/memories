@@ -1,0 +1,36 @@
+---
+name: ios
+on:
+  push:
+    paths:
+      - 'ios/**'
+      - 'src/styles/native-auth.css'
+      - '.github/workflows/ios.yaml'
+  pull_request:
+    paths:
+      - 'ios/**'
+      - 'src/styles/native-auth.css'
+      - '.github/workflows/ios.yaml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: macos-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Build (unsigned)
+        working-directory: ios
+        run: |
+          xcodebuild -version
+          xcodebuild build \
+            -project Memories.xcodeproj \
+            -scheme Memories \
+            -configuration Debug \
+            -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO
